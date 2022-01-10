@@ -2,6 +2,7 @@
 #[Clang 6.0 (clang-600.0.57)] on darwin
 #Type "help", "copyright", "credits" or "license()" for more information.
 
+
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -9,10 +10,8 @@ import matplotlib.pyplot as plt
 import plotly.express as px
 import seaborn as sns
 
-st.title('Welcome to my application! 👋')
+st.title('Welcome to the Car Data Analyses application for WCS!')
 
-#Display an element : st.write
-st.title("Car Data Analyses")
 
 link = "https://raw.githubusercontent.com/murpi/wilddata/master/quests/cars.csv"
 df = pd.read_csv(link)
@@ -22,10 +21,11 @@ print(checkbox)
 if checkbox:
     df
 
+
 st.title("Correlation Analysis")
 
 #Selectbox-measure selection
-st.header("Choice of the measure")
+st.header("Select the column:")
 measures = df.select_dtypes(['float64', 'int64']).columns
 
 # Scatterplot
@@ -38,8 +38,8 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 st.pyplot()
 
 #Selectbox-continent selection
-st.header("Choice of the continent")
-continent_choice = st.selectbox("Choose a continent :", df["continent"].unique())
+st.header("Select a continent: ")
+continent_choice = st.selectbox("Select a continent :", df["continent"].unique())
 df_choice = df[df["continent"]==continent_choice]
 
 # Scatterplot
@@ -49,7 +49,7 @@ st.pyplot()
 
 
 # Correlation positive
-st.header("Example of a positive correlation")
+st.header("A positive correlation")
 plt.figure()
 fig1, ax1 = plt.subplots()
 ax1.scatter(x = "weightlbs", y = "cubicinches", data = df)
@@ -58,10 +58,10 @@ plt.ylabel("cubicinches")
 plt.title("Weight and displacement")
 st.pyplot(fig1)
 
-st.write("We observe a positive correlation: the 2 variables move in the same direction.")
+st.write("Positive correlation: the 2 variables move in the same direction.")
 
 # Correlation négative
-st.header("Example of a negative correlation")
+st.header("A negative correlation")
 plt.figure()
 fig2, ax2 = plt.subplots()
 ax2.scatter(x = "weightlbs", y = "mpg", data = df)
@@ -70,7 +70,7 @@ plt.ylabel("mpg")
 plt.title("Weight and mpg")
 st.pyplot(fig2)
 
-st.write("We observe a negative correlation: when the weightlbs variable increases, the mpg variable decreases.")
+st.write("Negative correlation: when the weightlbs variable increases, the mpg variable decreases.")
 
 
 
@@ -79,8 +79,8 @@ st.write("We observe a negative correlation: when the weightlbs variable increas
 st.title("Distribution Analysis")
 
 #Measure Selection/dropdown
-st.header("Choice of the measure")
-radio_choice = st.radio("Choose a measure :", measures)
+st.header("Select a variable:")
+radio_choice = st.radio("Select a variable :", measures)
 
 # Boxplot and Histogram
 plt.figure()
@@ -96,8 +96,8 @@ plt.title("Histogram")
 st.pyplot()
 
 #Continent selection/dropdown
-st.header("Choice of the continent")
-cont_choice = st.radio("Choose a continent :", df["continent"].unique())
+st.header("Select a continent:")
+cont_choice = st.radio("Select a continent :", df["continent"].unique())
 df_cont = df[df["continent"]==cont_choice]
 
 # Boxplot and Histogram
@@ -114,7 +114,7 @@ plt.title("Histogram")
 st.pyplot()
 
 #Boxplot ex
-st.header("Example : Horsepower Boxplot in Europe ")
+st.header("Horsepower Boxplot in Europe ")
 df_eur = df[df["continent"]==" Europe."]
 plt.figure()
 sns.boxplot(x = "hp", y = "continent", data = df_eur)
