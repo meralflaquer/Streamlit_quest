@@ -131,5 +131,3 @@ plt.figure()
 sns.distplot(df_eur["hp"])
 plt.title("Histogram")
 st.pyplot()
-
-st.write("This is not normal.")
