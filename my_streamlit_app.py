@@ -10,8 +10,7 @@ import matplotlib.pyplot as plt
 import plotly.express as px
 import seaborn as sns
 
-st.title('Welcome to the Car Data Analyses application for WCS!')
-
+st.title('Data Analyses App for WCS!')
 
 link = "https://raw.githubusercontent.com/murpi/wilddata/master/quests/cars.csv"
 df = pd.read_csv(link)
@@ -76,7 +75,7 @@ st.pyplot(fig2)
 
 st.write("Negative correlation: when the weightlbs variable increases, the mpg variable decreases.")
 
-
+st.write('\n')
 
 ## Distribution Analyses ##
 
