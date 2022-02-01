@@ -3,6 +3,11 @@
 #Type "help", "copyright", "credits" or "license()" for more information.
 
 
+#!/usr/bin/env python3Python 3.9.4 (v3.9.4:1f2e3088f3, Apr  4 2021, 12:32:44) 
+#[Clang 6.0 (clang-600.0.57)] on darwin
+#Type "help", "copyright", "credits" or "license()" for more information.
+
+
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -10,7 +15,8 @@ import matplotlib.pyplot as plt
 import plotly.express as px
 import seaborn as sns
 
-st.title('Data Analyses App for WCS!')
+st.title('Welcome to the Car Data Analyses application for WCS!')
+
 
 link = "https://raw.githubusercontent.com/murpi/wilddata/master/quests/cars.csv"
 df = pd.read_csv(link)
@@ -31,14 +37,13 @@ measures = df.select_dtypes(['float64', 'int64']).columns
 plt.figure()
 scatter_x = st.selectbox('X axis :', measures)
 scatter_y = st.selectbox('Y axis :', measures)
-fig= px.scatter(df, x=scatter_x, y=scatter_y, title='Correlation', color_discrete_sequence=['gold'])
+sns.scatterplot(x=scatter_x, y=scatter_y, data=df)
 plt.title("Scatterplot")
-st.plotly_chart(fig)
-
+st.set_option('deprecation.showPyplotGlobalUse', False)
+st.pyplot()
 
 
 st.write('\n')
-
 
 #Selectbox-continent selection
 st.header("Select a continent: ")
@@ -75,7 +80,7 @@ st.pyplot(fig2)
 
 st.write("Negative correlation: when the weightlbs variable increases, the mpg variable decreases.")
 
-st.write('\n')
+
 
 ## Distribution Analyses ##
 
@@ -134,3 +139,4 @@ plt.figure()
 sns.distplot(df_eur["hp"])
 plt.title("Histogram")
 st.pyplot()
+
