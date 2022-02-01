@@ -32,10 +32,14 @@ measures = df.select_dtypes(['float64', 'int64']).columns
 plt.figure()
 scatter_x = st.selectbox('X axis :', measures)
 scatter_y = st.selectbox('Y axis :', measures)
-sns.scatterplot(x=scatter_x, y=scatter_y, data=df)
+fig= px.scatter(df, x=scatter_x, y=scatter_y, title='Correlation', color_discrete_sequence=['gold'])
 plt.title("Scatterplot")
-st.set_option('deprecation.showPyplotGlobalUse', False)
-st.pyplot()
+st.plotly_chart(fig)
+
+
+
+st.write('\n')
+
 
 #Selectbox-continent selection
 st.header("Select a continent: ")
